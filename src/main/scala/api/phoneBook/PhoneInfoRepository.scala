@@ -6,8 +6,8 @@ object PhoneInfoRepository {
   private val data: Map[String, PhoneInfo] = Map()
   
   def search(name: String): PhoneInfo = {
-    if(!data.contains(name)) null
-    else data(name)
+    if(isExistData(name)) data(name)
+    else null
   }
   
   def saveData(phoneInfo: PhoneInfo) {
@@ -16,5 +16,10 @@ object PhoneInfoRepository {
   
   def deleteData(name: String) {
     data -= name
+  }
+  
+  def isExistData(name: String): Boolean = {
+    if(data.contains(name)) true
+    else false
   }
 }

@@ -11,7 +11,19 @@ class Manager {
     phoneInfoRepository.saveData(phoneInfo);
   }
   
-  def deleteDate(name: String) {
-    phoneInfoRepository.deleteData(name)
+  def deleteDate(name: String): Boolean = {
+    if(phoneInfoRepository.isExistData(name)){
+      phoneInfoRepository.deleteData(name)
+      true
+    }
+    false
+  }
+  
+  def updateDate(phoneInfo: PhoneInfo): Boolean = {
+    if(phoneInfoRepository.isExistData(phoneInfo.name)){
+      phoneInfoRepository.saveData(phoneInfo);
+      true
+    }
+    false
   }
 }
